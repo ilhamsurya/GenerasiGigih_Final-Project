@@ -1,4 +1,4 @@
-require_relative '../../db/mysql_connector'
+require_relative '../../db/db_connector'
 class User
     attr_accessor :id, :username, :email, :description
     def initialize(params)
@@ -15,30 +15,33 @@ class User
     ## Save new user
     def save
         client = create_db_client
-        insert_query = "INSERT INTO USERS (username, email, description) VALUES ('#{@username}', '#{@email}', '#{@description}')"
-        
+        insert_query = "INSERT INTO users (username, email, description) VALUES ('#{@username}', '#{@email}', '#{@description}')"
         client.query(insert_query)
     end
     ## GET All User
     def self.get_all
         client = create_db_client
-        rawData = client.query('SELECT * FROM USERS')
-        items = []
-        rawData.each do |data|
-        item = Item.new(data['username'], data['email'], data['description'])
-        items.push(item)
+        @user = Hash.new
+        @users = Array.new
+        @query = client.query('SELECT * FROM users')
+        @query.each do |data|
+            @user = {:id => data['id'], :name => data['name'], :email => data['email'], 
+                :desc => data['description'], :created_at => data['created_at']}
+            @users << @user
         end
-        items
+        return @users.to_json
     end
     ## GET Single User
     def self.get_by_id(id)
         client = create_db_client
-        users = Array.new
-        rawData = client.query("SELECT * FROM USERS WHERE id = #{id}")
-        rawData.each do |data|
-            user = User.new(data);
-            users.push(user)
+        @user = Hash.new
+        @users = Array.new
+        @query = client.query("SELECT * FROM users WHERE id = #{id}")
+        @query.each do |data|
+            @user = {:id => data['id'], :name => data['name'], :email => data['email'], 
+                :desc => data['description'], :created_at => data['created_at']}
+            @users << @user
         end
-        users
+        return @users.to_json
     end
 end
