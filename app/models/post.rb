@@ -14,14 +14,21 @@ class Post
         true
     end
 
-    def self.all_post(tag)
+    def self.all_post
         client = create_db_client
-        all_post = client.query("SELECT posts.user_id, posts.body, posts.attachment, users.username, hashtags.tag, post_hashtags.created_time 
+        @post = Hash.new
+        @posts = Array.new
+        @query = client.query("SELECT posts.user_id, posts.body, posts.attachment, users.username, hashtags.tag, post_hashtags.created_at 
             FROM posts JOIN post_hashtags ON posts.id = post_hashtags.post_id 
             JOIN hashtags ON hashtags.id = post_hashtags.hashtag_id 
-            JOIN users on posts.user_id = users.id WHERE hashtags.tag=\"#{db_client.escape(tag)}\" 
-            ORDER BY posts.created_time desc;").each
-        all_post
+            JOIN users on posts.user_id = users.id
+            ORDER BY posts.created_at desc;")
+        @query.each do |data|
+            @post = {:user_id => data['user_id'], :body => data['body'], :username => data['username'], 
+                :hashtags => data['tag'], :created_at => data['created_at']}
+            @posts << @post
+        end
+        return @posts.to_json
     end
 
     def save
