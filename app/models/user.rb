@@ -25,7 +25,7 @@ class User
         @users = Array.new
         @query = client.query('SELECT * FROM users')
         @query.each do |data|
-            @user = {:id => data['id'], :name => data['name'], :email => data['email'], 
+            @user = {:id => data['id'], :name => data['username'], :email => data['email'], 
                 :desc => data['description'], :created_at => data['created_at']}
             @users << @user
         end
@@ -38,7 +38,7 @@ class User
         @users = Array.new
         @query = client.query("SELECT * FROM users WHERE id = #{id}")
         @query.each do |data|
-            @user = {:id => data['id'], :name => data['name'], :email => data['email'], 
+            @user = {:id => data['id'], :name => data['username'], :email => data['email'], 
                 :desc => data['description'], :created_at => data['created_at']}
             @users << @user
         end
