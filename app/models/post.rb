@@ -14,7 +14,7 @@ class Post
         true
     end
 
-    def self.all_post
+    def self.post_by_tags(tag)
         client = create_db_client
         @post = Hash.new
         @posts = Array.new
@@ -22,6 +22,7 @@ class Post
             FROM posts JOIN post_hashtags ON posts.id = post_hashtags.post_id 
             JOIN hashtags ON hashtags.id = post_hashtags.hashtag_id 
             JOIN users on posts.user_id = users.id
+            WHERE hashtag.tag = #{tag}
             ORDER BY posts.created_at desc;")
         @query.each do |data|
             @post = {:user_id => data['user_id'], :body => data['body'], :username => data['username'], 
@@ -37,6 +38,5 @@ class Post
         save_post = client.query("INSERT INTO posts (user_id, body, attachment) values ('#{@user_id}', '#{@body}', \"#{@attachment}\")")
         save_post
     end
-
 
 end
