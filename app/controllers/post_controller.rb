@@ -1,5 +1,6 @@
 require_relative '../models/post'
 require_relative '../models/hashtag'
+require_relative '../models/comment'
 require_relative '../../db/db_connector'
 
 class PostController < Sinatra::Application
@@ -28,7 +29,7 @@ class PostController < Sinatra::Application
       body = data['body']
       attachment = data["attachment"]
       hashtags = data['hashtags']
-      username = User.get_by_id(user_id)
+      username = User.get_username(user_id)
       data_attachment = adding_post_attachment(user_id,body,attachment)
       data_tags = adding_tags(hashtags)
 
@@ -41,9 +42,38 @@ class PostController < Sinatra::Application
         message: "succesfully creating new post",
         user_id: user_id,
         post_id: data_attachment['id'],
-        username: username,
+        user_info: username,
         body: body,
         attachment: data_attachment['attachment'],
+        tags: data_tags
+      }.to_json
+
+  end
+
+  def self.create_comment(params,data)
+      client = create_db_client
+      user_id = params['id']
+      post_id = params['post_id']
+      body = data['body']
+      attachment = data["attachment"]
+      hashtags = data['hashtags']
+      username = User.get_username(user_id)
+      data_comment = adding_comment_attachment(user_id,post_id,body,attachment)
+      data_tags = adding_tags(hashtags)
+
+      data_tags.each do |tag|
+        insert_post_tags = "INSERT INTO comment_hashtags(comment_id,hashtag_id) VALUES (#{data_comment['id']}, #{tag['id']})"
+        rawData = client.query(insert_post_tags)
+      end
+
+      return{
+        message: "succesfully creating new comment to the post #{data_comment['id']}",
+        user_id: user_id,
+        post_id: post_id,
+        comment_id: data_comment['id'],
+        username: username,
+        body: body,
+        attachment: data_comment['attachment'],
         tags: data_tags
       }.to_json
 
@@ -57,6 +87,16 @@ class PostController < Sinatra::Application
     end
     data_post = post.save
     data_post
+  end
+
+  def self.adding_comment_attachment(user_id,post_id,body,attachment)
+    if attachment.nil?
+      comment = Comment.new(user_id, post_id, body)
+    else
+      comment = Comment.new(user_id, post_id, body, attachment)
+    end
+    data_comment = comment.save
+    data_comment
   end
 
   def self.adding_tags(tags)
