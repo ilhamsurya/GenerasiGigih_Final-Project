@@ -1,17 +1,24 @@
 require_relative '../../db/db_connector'
 
 class Post
-    attr_reader :user_id, :body, :attachment, 
-
+    attr_accessor :user_id, :body, :attachment
     def initialize(user_id, body, attachment=nil)
-        @user_id = user_id,
-        @body = body,
+        @user_id = user_id
+        @body = body
         @attachment = attachment
     end
 
     def valid?
         return false if @post.nil? || @user_id.nil? || @body.size > 1000
         true
+    end
+
+    def save
+        client = create_db_client
+        save_post = client.query("INSERT INTO posts (user_id, body, attachment) values ('#{@user_id}', '#{@body}', \"#{@attachment}\")")
+        id = client.last_id
+        data = client.query("SELECT * FROM posts WHERE id = #{id}").each[0]
+        data
     end
 
     def self.post_by_tags(tag)
@@ -22,21 +29,17 @@ class Post
             FROM posts JOIN post_hashtags ON posts.id = post_hashtags.post_id 
             JOIN hashtags ON hashtags.id = post_hashtags.hashtag_id 
             JOIN users on posts.user_id = users.id
-            WHERE hashtag.tag = #{tag}
+            WHERE hashtags.tag = \"#{tag}\"
             ORDER BY posts.created_at desc;")
         @query.each do |data|
             @post = {:user_id => data['user_id'], :body => data['body'], :username => data['username'], 
                 :hashtags => data['tag'], :created_at => data['created_at']}
             @posts << @post
         end
-        return @posts.to_json
+        @posts
     end
 
-    def save
-        return false unless valid?
-        client = create_db_client
-        save_post = client.query("INSERT INTO posts (user_id, body, attachment) values ('#{@user_id}', '#{@body}', \"#{@attachment}\")")
-        save_post
-    end
+
+
 
 end
