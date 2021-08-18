@@ -13,6 +13,14 @@ class PostController < Sinatra::Application
     }.to_json
     
   end
+
+  def self.show_trending
+    tags = Hashtag.trending_tags
+    return {
+      message: "successfuly load 5 trending hashtags in 24 hour",
+      posts: tags
+    }.to_json
+  end
   
   def self.create_post(params,data)
       client = create_db_client
@@ -54,5 +62,6 @@ class PostController < Sinatra::Application
   def self.adding_tags(tags)
     post_tags = Hashtag.new(tags)
     data_tags = post_tags.save
+    data_tags
   end
 end
