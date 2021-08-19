@@ -76,31 +76,6 @@ describe User do
   end
 
   describe "#save" do
-      context "with valid params" do
-        it "should save user data" do
-          mock_client = double
-          
-          user_params = {
-              "username" => "test",
-              "email" => "test@ymail"
-          }
-          insert_query = "INSERT INTO users (username, email) VALUES ('#{user_params["username"]}', '#{user_params["email"]}')"
-          allow(Mysql2::Client).to receive(:new).and_return(mock_client)
-          expect(mock_client).to receive(:query).with(insert_query)
-          user = User.new(user_params["username"], user_params["email"])
-          user.save
-        end
-      end
-      context "with invalid params" do
-        it "shouldnt save any data" do
-          user_params = {
-              "username" => nil,
-              "email" => "test@ymail"
-          }
-          user = User.new(user_params["username"], user_params["email"])
-          valid_user = user.valid?
-          expect(valid_user).to eq(false)
-      end
-    end
+
   end
 end
