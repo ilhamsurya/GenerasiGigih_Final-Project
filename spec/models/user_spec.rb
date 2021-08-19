@@ -91,6 +91,16 @@ describe User do
           user.save
         end
       end
-     
+      context "with invalid params" do
+        it "shouldnt save any data" do
+          user_params = {
+              "username" => nil,
+              "email" => "test@ymail"
+          }
+          user = User.new(user_params["username"], user_params["email"])
+          valid_user = user.valid?
+          expect(valid_user).to eq(false)
+      end
+    end
   end
 end
