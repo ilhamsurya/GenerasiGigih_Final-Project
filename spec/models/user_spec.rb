@@ -1,6 +1,5 @@
 require_relative '../test_helper'
 require_relative '../../app/models/user'
-require_relative '../../app/controllers/user_controller'
 require_relative '../../db/db_connector'
 
 describe User do
@@ -71,6 +70,27 @@ describe User do
             expect(mock_client).to receive(:query).with(select_query_with_id).and_return(mock_raw_data)
 
             User.get_by_id(id)
+        end
+    end
+  end
+
+  describe '#get_username' do
+    context 'when displaying single registered users username' do
+        it 'should return single username of registered users' do
+            mock_client = double
+            id = 1
+            select_query_with_id = "SELECT username,email FROM users WHERE id = #{id}"
+            mock_raw_data = [
+                {
+                    "username" => "ilham",
+                    "email" => "ilhamsurya.m@gmail.com",
+                }
+            ]
+
+            allow(Mysql2::Client).to receive(:new).and_return(mock_client)
+            expect(mock_client).to receive(:query).with(select_query_with_id).and_return(mock_raw_data)
+
+            User.get_username(id)
         end
     end
   end
