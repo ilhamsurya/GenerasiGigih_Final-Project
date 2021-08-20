@@ -4,11 +4,19 @@ require_relative '../../db/db_connector'
 class UserController < Sinatra::Application
   def self.show_all
     user = User.get_all
+    return {
+      message: "returning all user",
+      users: user
+    }.to_json
   end
 
   def self.show_one(params)
     id = params['id']
     user = User.get_by_id(id)    
+    return {
+      message: "returning single user",
+      users: user
+    }.to_json
   end
 
   def self.save(params) 
@@ -26,14 +34,12 @@ class UserController < Sinatra::Application
 
     username = params['username']
     email = params ['email']
-    description = params['description']
-    user = User.new(username,email,description)
+    user = User.new(username,email)
 
     return  {
       message: "succesfully created new user",
       username: username,
       email: email,
-      description: description
     }.to_json
   end
 
