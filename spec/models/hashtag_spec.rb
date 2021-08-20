@@ -6,25 +6,23 @@ describe Hashtag do
   describe "#validation" do
     context "when initialize valid parameter" do
       it "should return true" do
-          hashtag_value = ["Ikan","Ular"]
-          hashtag = Hashtag.new(hashtag_value)
-          expect(hashtag.valid_tag?).to eq(true)
+            hashtag_value = ["#Ikan","#Ular"]
+            hashtag = Hashtag.new(hashtag_value)
+            expect(hashtag.valid_tag?).to eq(true)
         end
       end
-    context "when initialize invalid parameter" do
-      it "should return false" do
-          hashtag = Hashtag.new(nil)
-          expect(hashtag.valid_tag?).to eq(false)
-      end
-    end
   end
 
-  describe "#initialize" do
-    context "given valid attribute" do
-        it "should create object that equal with user_params" do
-           
+  describe "#formatted" do
+    context "when getting new hashtag" do
+      it "should return formatted hashtag" do
+            hashtag_value = ["#Ikan","#Ular"]
+            hashtag = Hashtag.new(hashtag_value)
+            hashtag.formatted_hashtag
+            
+            expect(hashtag).to eq(hashtag)
         end
-    end
+      end
   end
 
  
