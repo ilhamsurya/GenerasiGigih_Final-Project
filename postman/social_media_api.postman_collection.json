@@ -1,0 +1,577 @@
+{
+	"info": {
+		"_postman_id": "5d07094b-e7db-4c3e-8439-89255cc3c61f",
+		"name": "Social Media API",
+		"description": "## Generasi gigih final project, create a full social media API \nAuthor: Ilhamsurya, BISA CLASS, GBE01077",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create New User",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"username\": \"antonio De La Cruz\",\r\n    \"email\": \"Delacruz@gmail.com\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/users/new",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"users",
+						"new"
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to save my username, email, and bio description."
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Post",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"awawaw\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/posts/new/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"posts",
+						"new",
+						"1"
+					],
+					"query": [
+						{
+							"key": ":id",
+							"value": "1",
+							"description": "user id that want to be displayed",
+							"disabled": true
+						}
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a text (max 1000 char)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Post With Tags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"user-agent": true,
+					"host": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"awawaw\",\r\n    \"hashtags\": [\r\n        \"#AnAn\",\r\n        \"#RSRSRS\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/posts/new/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"posts",
+						"new",
+						"1"
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a text (max 1000 char) that might contain a hashtags ex: #generasigigih"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Post With Tags And Attachment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "\"test\"",
+							"type": "text"
+						},
+						{
+							"key": "hashtags[]",
+							"value": "\"GigihPisan\"",
+							"type": "text"
+						},
+						{
+							"key": "hashtags[]",
+							"value": "\"GigihAja\"",
+							"type": "text"
+						},
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/ilham/Pictures/download.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/posts/new/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"posts",
+						"new",
+						"1"
+					],
+					"query": [
+						{
+							"key": ":user_id",
+							"value": "1",
+							"description": "user id that want to create new post",
+							"disabled": true
+						}
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a text (max 1000 char) that might contain a hashtags ex: #generasigigih and attachment including picture and video file"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Comment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"ini comment ku\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/comment/1/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"comment",
+						"1",
+						"1"
+					],
+					"query": [
+						{
+							"key": ":post_id",
+							"value": "1",
+							"description": "post_id that the user want to comment in",
+							"disabled": true
+						},
+						{
+							"key": ":user_id",
+							"value": "1",
+							"description": "user id that want to create new comment",
+							"disabled": true
+						}
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a comment (max 1000 char)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Comment With Tags",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"body\": \"awawaw\",\r\n    \"hashtags\": [\r\n        \"#AnAn\",\r\n        \"#RSRSRS\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/comment/12/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"comment",
+						"12",
+						"1"
+					],
+					"query": [
+						{
+							"key": ":post_id",
+							"value": "1",
+							"description": "post_id that the user want to comment in",
+							"disabled": true
+						},
+						{
+							"key": ":user_id",
+							"value": null,
+							"description": "user id that want to create new comment",
+							"disabled": true
+						}
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a comment (max 1000 char) that might contain a hashtags ex: #generasigigih"
+			},
+			"response": []
+		},
+		{
+			"name": "Create New Comment With Tags And Attachment",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"host": true,
+					"user-agent": true,
+					"accept": true,
+					"accept-encoding": true,
+					"connection": true
+				}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "body",
+							"value": "ini comment ku, mana comment mu",
+							"type": "text"
+						},
+						{
+							"key": "hashtag[]",
+							"value": "#GasAjaDulu",
+							"type": "text"
+						},
+						{
+							"key": "hashtag[]",
+							"value": "#PastiBisa",
+							"type": "text"
+						},
+						{
+							"key": "attachment",
+							"type": "file",
+							"src": "/C:/Users/ilham/Pictures/download.jpg"
+						}
+					],
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/comment/12/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"comment",
+						"12",
+						"1"
+					],
+					"query": [
+						{
+							"key": ":post_id",
+							"value": "1",
+							"description": "post_id that the user want to comment in",
+							"disabled": true
+						},
+						{
+							"key": ":user_id",
+							"value": null,
+							"description": "user_id that want to post a comment",
+							"disabled": true
+						}
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to posting a text (max 1000 char) that might contain a hashtags ex: #generasigigih and attachment including picture and video file"
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "#### User Story:\nAs a user, i want to see all registered user"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": ""
+				},
+				"description": "#### User Story:\nAs a user, i want to see single user based on the id"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post With Tags",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/posts/generasigigih",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"posts",
+						"generasigigih"
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to see all posts that contain a certain hashtags (only one hashtag at a time)"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trending Tags",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:4567/trending",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4567",
+					"path": [
+						"trending"
+					]
+				},
+				"description": "#### User Story:\nAs a user, I want to See top 5 trending hashtags in the past 24 hours"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "<Basic Auth Username>",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "<Basic Auth Password>",
+				"type": "string"
+			}
+		]
+	},
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "https://petstore.swagger.io/v1",
+			"type": "string"
+		}
+	]
+}
