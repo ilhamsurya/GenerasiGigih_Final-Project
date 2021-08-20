@@ -39,7 +39,4 @@ class Post
         @posts
     end
 
-
-
-
 end
