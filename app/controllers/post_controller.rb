@@ -113,6 +113,31 @@ class PostController < Sinatra::Application
     end
   end
 
+  def self.adding_tags(tags)
+    post_tags = Hashtag.new(tags)
+    data_tags = post_tags.save
+    data_tags
+  end
+  
+  def self.adding_post_attachment(user_id,body,attachment)
+    if attachment.nil?
+      post = Post.new(user_id, body)
+    else
+      post = Post.new(user_id, body, attachment)
+    end
+    data_post = post.save
+    data_post
+  end
+
+  def self.adding_comment_attachment(user_id,post_id,body,attachment)
+    if attachment.nil?
+      comment = Comment.new(user_id, post_id, body)
+    else
+      comment = Comment.new(user_id, post_id, body, attachment)
+    end
+    data_comment = comment.save
+    data_comment
+  end
 
 
   
