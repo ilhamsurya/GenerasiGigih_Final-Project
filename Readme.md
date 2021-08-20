@@ -3,11 +3,11 @@
 ## Problem Description
 
 * User Story:
-  * Posting a text (max 1000 char) that might contain a hashtags ex: #generasigigih
-  * See all posts that contain a certain hashtags (only one hashtag at a time)
-  * See top 5 trending hashtags in the past 24 hours
-  * Comment on a post, comment can contain hastags
-  * Attach pictures(jpg,png,gif), video(mp4) and file
+  * [✓] Posting a text (max 1000 char) that might contain a hashtags ex: #generasigigih
+  * [✓] See all posts that contain a certain hashtags (only one hashtag at a time)
+  * [✓] See top 5 trending hashtags in the past 24 hours
+  * [✓] Comment on a post, comment can contain hastags
+  * [✓] Attach pictures(jpg,png,gif), video(mp4) and file to the post and comment
 
 ---
 
@@ -45,11 +45,12 @@
   * Start MySQL :
     >   `sudo /etc/init.d/mysql start`
   * Start Application :
-    >   `ruby app/index.rb`
+    >   `ruby index.rb`
 
 * Test Suite
   * Run Test :
-    >   `rspec app/index.rb`
+    >   `rspec ./spec/{controller/model}/{file_spec.rb}`
   * Print Test Result :
-    >   `rspec -f d app/index.rb`
+    >   `rspec -f d ./spec/{controller/model}/{file_spec.rb}`
     >
+
