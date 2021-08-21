@@ -40,7 +40,7 @@
 ---
 ## API Documentation
 More about API Implementation, explained in postman collection:
-[API Documentation](https://github.com/ilhamsurya/GenerasiGigih_Final-Project/tree/main/postman)
+[API Documentation](https://documenter.getpostman.com/view/8882188/TzzBourT)
 
 ---
 
