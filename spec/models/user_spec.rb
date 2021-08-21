@@ -2,6 +2,7 @@ require_relative '../test_helper'
 require_relative '../../app/models/user'
 require_relative '../../db/db_connector'
 
+
 describe User do
   describe "#validation" do
     context "when initialize valid parameter" do
