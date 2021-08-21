@@ -9,7 +9,7 @@ class Post
     end
 
     def valid?
-        return false if @post.nil? || @user_id.nil? || @body.size > 1000
+        return false if  @user_id.nil? || @body.size > 1000
         true
     end
 
