@@ -19,6 +19,15 @@ class UserController < Sinatra::Application
     }.to_json
   end
 
+  def self.show_username(params)
+    id = params['id']
+    user = User.get_username(id)    
+    return {
+      message: "returning username user",
+      users: user
+    }.to_json
+  end
+
   def self.save(params) 
     if params.nil?
       return {
