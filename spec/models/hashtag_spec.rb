@@ -25,5 +25,26 @@ describe Hashtag do
       end
   end
 
- 
+  describe "#save" do
+    context "when getting params for new hashtag" do
+      it "should save the hashtag" do
+          mock_client = double
+          
+          hashtag_params = {
+            "hashtag" => ['test']
+          }
+          insert_query = "INSERT INTO hashtags(tag,count) VALUES ('#{hashtag_params["hashtag"]}', 1) ON DUPLICATE KEY UPDATE count = VALUES(count) + 1"
+          hashtag = Hashtag.new(hashtag_params["hashtag"])
+          hashtage_value = hashtag.save
+          expect(hashtage_value[0]['tag']).to eq('test')
+        end
+      end
+  end
+  describe "#trending" do
+    context "when getting params for new hashtag" do
+      it "should see top 5 hashtag in 24 hour" do
+          
+        end
+      end
+  end
 end
