@@ -1,0 +1,12 @@
+
+[Unit]
+Description=Sinatra application
+
+[Service]
+User=http://34.81.135.86/
+WorkingDirectory=/home/gbe01077/app/social_media
+ExecStart=/home/gbe01077/.rbenv/shims/ruby index.rb
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

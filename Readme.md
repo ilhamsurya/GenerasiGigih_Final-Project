@@ -38,6 +38,11 @@
     >   `sudo apt install ansible`
     >
 ---
+## API Documentation
+More about API Implementation, explained in postman collection:
+[API Documentation](https://github.com/ilhamsurya/GenerasiGigih_Final-Project/tree/main/postman)
+
+---
 
 ## Run Application & Test Suite
 
@@ -48,9 +53,8 @@
     >   `ruby index.rb`
 
 * Test Suite
-  * Run Test :
+  * Run Single Test :
     >   `rspec ./spec/{controller/model}/{file_spec.rb}`
-  * Print Test Result :
-    >   `rspec -f d ./spec/{controller/model}/{file_spec.rb}`
-    >
+  * Run All Test :
+    >   `rspec -f d`
 

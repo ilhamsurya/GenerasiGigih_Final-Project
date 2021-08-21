@@ -97,6 +97,14 @@ Upload app to server:
     2) ekstak file build :  tar -xvf build.tgz
     3) remove file build:   rm build.tgz
 
+Ruby installation in server
+    1) sudo apt update
+    2) git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+    3) echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+    4) echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+    5) source ~/.bashrc
+    6) rbenv install 2.7.4
+
 ansible-playbook --inventory inventory.yml --user vagrant --private-key <private key> playbook.yml
 curl cheat.sh/<command>
 env | grep DB_NAME
