@@ -41,8 +41,12 @@ describe UserController do
                     "id" => 1
                 }
                 users = User.get_username(params["id"])
-                actual_user = UserController.show_one(params)
-                expect(users["username"]).to eq(actual_user["username"])
+                query_user = UserController.show_username(params)
+                actual_user = {
+                    message: "returning username user",
+                    users: users
+                }.to_json
+                expect(actual_user).to eq(query_user)
             end
         end
     end
